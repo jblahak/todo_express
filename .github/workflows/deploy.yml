@@ -1,8 +1,10 @@
 name: Deploy app 
+
 on:
   push:
     branches:
-      - master
+      - main
+
 jobs:
   deploy:
     runs-on: ubuntu-20.04
