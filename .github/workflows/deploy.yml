@@ -7,6 +7,9 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     steps:
+      - name: jwt_secrets
+        env: 
+          secret_jwt: ${{secrets.SECRET_JWT}}
       - name: Init project
         uses: actions/checkout@v2
       - name: JS Linter

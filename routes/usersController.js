@@ -2,6 +2,9 @@
 const bcrypt = require('bcrypt')
 const jwt = require('../utils/jwt.utils')
 const regex = require('../utils/regex.utils')
+const path = require('path')
+const fs = require('fs')
+const yaml = require('js-yaml');
 
 // Imports
 const models = require('../models')

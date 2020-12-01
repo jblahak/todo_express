@@ -1,6 +1,15 @@
 const jwt = require('jsonwebtoken')
+// const fs = require('fs')
+// const path = require('path')
+// const yaml = require('js-yaml')
 
-const SECRET_JWT = 'dz345ooher53dj25vert761djhcnzaoc5zncziriv622cjcqaev644acxjeir32d'
+// const appDir = path.dirname(require.main.filename);
+// const p = path.join(appDir, '.github/workflows', 'deploy.yml');
+// const YmlFile = fs.readFileSync(p, 'utf-8')
+// const data = yaml.safeLoad(YmlFile)
+// const secret = data.jobs.deploy.steps[0].env.secret_jwt
+// const SECRET_JWT = secret
+const SECRET_JWT = 'secret'
 
 module.exports = {
     generateTokenForUser: userData => {
