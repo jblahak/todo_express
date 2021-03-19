@@ -64,7 +64,8 @@ module.exports = {
                     if (result) {
                         return res.status(200).json({
                             'UserId': userFound.id,
-                            'token': jwt.generateTokenForUser(userFound)
+                            'token': jwt.generateTokenForUser(userFound),
+                            'status': 200
                         })
                     } else {
                         return res.status(403).json({'error': 'Invalid password'})
