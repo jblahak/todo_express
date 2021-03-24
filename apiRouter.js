@@ -13,6 +13,7 @@ exports.router = (() => {
     apiRouter.route('/users/register/').post(usersController.register)
     apiRouter.route('/users/login/').post(usersController.login)
     apiRouter.route('/users/user/').get(usersController.getUser)
+    apiRouter.route('/users/user/id').get(usersController.getUserById)
     apiRouter.route('/users/user/').put(usersController.udpateUserProfile)
 
     // Todos routes
