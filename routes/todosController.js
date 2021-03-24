@@ -50,13 +50,13 @@ module.exports = {
         const {completed, id} = req.body
 
         models.Todos.findOne({
-            attributes: ['id', 'completed'],
+            attributes: ['id', 'completed', 'attachement', 'title', 'userId', 'likes', 'createdAt', 'updatedAt'],
             where: {id}
         })
         .then(todo =>{
             if (todo) {
                 todo.update({
-                    completed: (completed ? completed : todo.completed)
+                    completed: !todo.completed
                 })
                 .then( todo => {
                     if(todo) return res.status(200).json(todo)
