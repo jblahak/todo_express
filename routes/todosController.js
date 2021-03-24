@@ -45,5 +45,31 @@ module.exports = {
                 return res.status(500).json({'error': 'unable to fetch todos'})
             })
         
+    },
+    completeTodo: (req, res) => {
+        const {completed, id} = req.body
+
+        models.Todos.findOne({
+            attributes: ['id', 'completed'],
+            where: {id}
+        })
+        .then(todo =>{
+            if (todo) {
+                todo.update({
+                    completed: (completed ? completed : todo.completed)
+                })
+                .then( todo => {
+                    if(todo) return res.status(200).json(todo)
+                    else return res.status(500).json({'error': 'Unable to update this task'})
+                })
+                .catch( err => {
+                    return res.status(500).json({'error': 'Cannot update this task'})
+                })
+            }
+            
+        })
+        .catch( err => {
+            return res.status(404).json({'error': 'Unable to find this task'})
+        })
     }
 }

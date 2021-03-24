@@ -18,6 +18,7 @@ exports.router = (() => {
     // Todos routes
     apiRouter.route('/todos/post').post(todosController.postTodo)
     apiRouter.route('/todos/').get(todosController.getTodos)
+    apiRouter.route('/todos/complete').put(todosController.completeTodo)
 
     return apiRouter
 })()
