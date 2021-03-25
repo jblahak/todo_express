@@ -50,7 +50,7 @@ module.exports = {
         const {completed, id} = req.body
 
         models.Todos.findOne({
-            attributes: ['id', 'completed', 'attachement', 'title', 'userId', 'likes', 'createdAt', 'updatedAt'],
+            attributes: ['id', 'completed', 'attachement', 'title', 'UserId', 'likes', 'createdAt', 'updatedAt'],
             where: {id}
         })
         .then(todo =>{
@@ -59,7 +59,7 @@ module.exports = {
                     completed: !todo.completed
                 })
                 .then( todo => {
-                    if(todo) return res.status(200).json(todo)
+                    if(todo) return res.status(201).json(todo)
                     else return res.status(500).json({'error': 'Unable to update this task'})
                 })
                 .catch( err => {
