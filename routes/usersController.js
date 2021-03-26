@@ -103,7 +103,7 @@ module.exports = {
         })
     },
     getUserById: (req, res) => {
-        const id = req.body.id
+        const id = req.headers['id']
 
         models.User.findOne({
             attributes: ['id', 'email', 'bio'],
