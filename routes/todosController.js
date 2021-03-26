@@ -8,7 +8,7 @@ module.exports = {
 
         const {title} = req.body
 
-        if (title == null) res.status(400).json({'error': 'missing parameters'})
+        if (title == null) return res.status(400).json({'error': 'missing parameters'})
 
         models.User.findOne({
             where: {id: userId}
@@ -16,7 +16,7 @@ module.exports = {
         .then(user => {
             if(user) {
                 models.Todos.create({
-                    title,
+                    title: title,
                     completed: 0,
                     UserId: userId,
                     likes: 0
