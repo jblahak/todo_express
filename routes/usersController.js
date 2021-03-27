@@ -14,8 +14,8 @@ module.exports = {
 
         // Verifications
         if (email == null || password == null) { return res.status(400).json({'error': 'missing parameters'}) }
-        if (!regex.email.test(email)) { return res.status(400).json({'error': 'email invalid format'}) }
-        if (!regex.password.test(password)) { return res.status(400).json({'error': 'password must contain between 6 and 20 characters and at least one numeric digit, one uppercase and one lowercase letter'}) }
+        if (!regex.email.test(email)) { return res.status(400).json({'error': 'email invalid format', 'type': 'email'}) }
+        if (!regex.password.test(password)) { return res.status(400).json({'error': 'password must contain between 6 and 20 characters and at least one numeric digit, one uppercase and one lowercase letter', 'type': 'password'}) }
         
         // Get user
         models.User.findOne({
@@ -33,12 +33,13 @@ module.exports = {
                     })
                     .then(newUser => {
                         return res.status(201).json({
-                            'UserId': newUser.id
+                            'UserId': newUser.id,
+                            'status': 201
                         })
                     })
                 })
             } else {
-                return res.status(409).json({'error': 'User already exist'})
+                return res.status(409).json({'error': 'User already exist', 'status': 409})
             }
         })
         .catch(err => {
