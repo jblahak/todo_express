@@ -10,10 +10,10 @@ const models = require('../models')
 module.exports = {
     register: (req, res) => {
         // Params
-        const {email, password, bio} = req.body
+        const {email, password, bio, username} = req.body
 
         // Verifications
-        if (email == null || password == null) { return res.status(400).json({'error': 'missing parameters'}) }
+        if (email == null || password == null || username == null) { return res.status(400).json({'error': 'missing parameters'}) }
         if (!regex.email.test(email)) { return res.status(400).json({'error': 'email invalid format', 'type': 'email'}) }
         if (!regex.password.test(password)) { return res.status(400).json({'error': 'password must contain between 6 and 20 characters and at least one numeric digit, one uppercase and one lowercase letter', 'type': 'password'}) }
         
@@ -27,6 +27,7 @@ module.exports = {
                 bcrypt.hash(password, 11, (err, bcryptedPassword) => {
                     const newUser = models.User.create({
                         email,
+                        username,
                         password: bcryptedPassword,
                         bio,
                         admin: 0
@@ -89,7 +90,7 @@ module.exports = {
         if (userId < 0 ) return res.status(400).json({'error': 'wrong token'})
 
         models.User.findOne({
-            attributes: ['id', 'email', 'bio'],
+            attributes: ['id', 'email', 'username', 'bio'],
             where: {id: userId}
         })
         .then(user => {
@@ -107,7 +108,7 @@ module.exports = {
         const id = req.headers['id']
 
         models.User.findOne({
-            attributes: ['id', 'email', 'bio'],
+            attributes: ['id', 'email', 'username', 'bio'],
             where: {id} 
         })
         .then(user => {
