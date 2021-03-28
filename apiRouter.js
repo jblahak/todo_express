@@ -14,7 +14,7 @@ exports.router = (() => {
     apiRouter.route('/users/login/').post(usersController.login)
     apiRouter.route('/users/user/').get(usersController.getUser)
     apiRouter.route('/users/user/id').get(usersController.getUserById)
-    apiRouter.route('/users/user/').put(usersController.udpateUserProfile)
+    apiRouter.route('/users/user/update').put(usersController.udpateUserProfile)
 
     // Todos routes
     apiRouter.route('/todos/post').post(todosController.postTodo)
