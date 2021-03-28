@@ -124,6 +124,7 @@ module.exports = {
         const {bio, username, email} = req.body
 
         if (userId < 0 ) return res.status(400).json({'error': 'wrong token'})
+        if (!regex.email.test(email)) { return res.status(400).json({'error': 'email invalid format', 'type': 'email'}) }
 
         models.User.findOne({
             attributes: ['id', 'bio', 'username', 'email'],
