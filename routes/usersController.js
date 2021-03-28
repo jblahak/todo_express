@@ -121,18 +121,20 @@ module.exports = {
         const headerAuth = req.headers['authorization']
         const userId = jwt.getUserId(headerAuth)
 
-        const {bio} = req.body
+        const {bio, username, email} = req.body
 
         if (userId < 0 ) return res.status(400).json({'error': 'wrong token'})
 
         models.User.findOne({
-            attributes: ['id', 'bio'],
+            attributes: ['id', 'bio', 'username', 'email'],
             where: {id: userId}
         })
         .then(user => {
             if (user) {
                 user.update({
-                    bio: (bio ? bio : user.bio)
+                    bio: (bio ? bio : user.bio),
+                    username: (username ? username : user.username),
+                    email: (email ? email : user.email)
                 })
                 .then(user => {
                     if (user) {
