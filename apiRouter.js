@@ -20,6 +20,7 @@ exports.router = (() => {
     apiRouter.route('/todos/post').post(todosController.postTodo)
     apiRouter.route('/todos/').get(todosController.getTodos)
     apiRouter.route('/todos/complete').put(todosController.completeTodo)
+    apiRouter.route('/todos/delete').delete(todosController.deleteTodo)
 
     return apiRouter
 })()

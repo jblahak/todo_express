@@ -71,5 +71,16 @@ module.exports = {
         .catch( err => {
             return res.status(404).json({'error': 'Unable to find this task'})
         })
+    },
+    deleteTodo: (req, res) => {
+        const {id} = req.body
+
+        models.Todos.destroy({
+            where: {id}
+        })
+        .then(() => res.status(204).json())
+        .catch(err => {
+            return res.status(404).json({'error': 'task not found'})
+        })
     }
 }
