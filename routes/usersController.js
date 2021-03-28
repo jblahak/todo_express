@@ -90,7 +90,7 @@ module.exports = {
         if (userId < 0 ) return res.status(400).json({'error': 'wrong token'})
 
         models.User.findOne({
-            attributes: ['id', 'email', 'username', 'bio'],
+            attributes: ['id', 'email', 'username', 'bio', 'createdAt'],
             where: {id: userId}
         })
         .then(user => {
@@ -108,7 +108,7 @@ module.exports = {
         const id = req.headers['id']
 
         models.User.findOne({
-            attributes: ['id', 'email', 'username', 'bio'],
+            attributes: ['id', 'email', 'username', 'bio', 'createdAt'],
             where: {id} 
         })
         .then(user => {
