@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     completed: DataTypes.BOOLEAN,
     likes: DataTypes.INTEGER,
-    attachement: DataTypes.STRING
+    attachement: DataTypes.STRING,
+    description: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Todos',
