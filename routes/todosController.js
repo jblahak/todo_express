@@ -6,7 +6,7 @@ module.exports = {
         const headerAuth = req.headers['authorization']
         const userId = jwt.getUserId(headerAuth)
 
-        const {title} = req.body
+        const {title, description} = req.body
 
         if (title == null) return res.status(400).json({'error': 'missing parameters'})
 
@@ -16,7 +16,8 @@ module.exports = {
         .then(user => {
             if(user) {
                 models.Todos.create({
-                    title: title,
+                    title,
+                    description,
                     completed: 0,
                     UserId: userId,
                     likes: 0
